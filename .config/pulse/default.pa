@@ -1,0 +1,7 @@
+.include /etc/pulse/default.pa
+
+# Fix LLD pour la carte son pourrie du pc fixe
+set-card-profile alsa_card.pci-0000_0c_00.3 HiFi
+set-default-sink alsa_output.pci-0000_0c_00.3.HiFi__hw_Generic__sink
+set-default-source alsa_output.pci-0000_0c_00.3.HiFi__hw_Generic__sink 
+
