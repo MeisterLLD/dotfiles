@@ -5,7 +5,14 @@ set meta-flag on
 set input-meta on
 set convert-meta off
 set output-meta on
+
+# LLD
 set enable-keypad on
+set editing-mode vi
+set keymap vi-command
+
+
+
 
 $if mode=emacs
 
