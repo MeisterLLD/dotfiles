@@ -85,5 +85,10 @@
     m:0x40 + c:96
     Mod4 + F12 
 
+#Calculatrice
+"speedcrunch"
+    m:0x50 + c:76
+    Mod2+Mod4 + F10 
+
 #
 # End of xbindkeys configuration

@@ -1,10 +1,10 @@
 Config { 
 
    -- appearance
-    font = "xft:Mononoki Nerd Font:pixelsize=14:antialias=true:hinting=true"
-   , additionalFonts = [ "xft:Symbola:pixelsize=14",
-			 "xft:Koruri:pixelsize=12",
-			 "xft:Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true"
+    font = "xft:Mononoki Nerd Font:pixelsize=21:antialias=true:hinting=true"
+   , additionalFonts = [ "xft:Symbola:pixelsize=21",
+			 "xft:Koruri:pixelsize=18",
+			 "xft:Inconsolata for Powerline:pixelsize=18:antialias=true:autohint=true"
                         ]
    , bgColor = "#002b36"
    , fgColor = "#657b83"
@@ -15,7 +15,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fn=2>%StdinReader%</fn> | %multicpu% | %multicoretemp% | %memory%}{<fn=2>♫ %music%</fn> | %LFJL% | %mydate% | %kbd% |             "
+   , template = "<fn=2>%StdinReader%</fn> | %multicpu% | %multicoretemp% | %memory%}{<fn=2>♫ %music%</fn> | %LFJL% | %mydate% | %kbd% |                              "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start

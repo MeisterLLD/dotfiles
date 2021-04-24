@@ -1,13 +1,3 @@
-search image
-search .conf
-search rang
-open_with an
-search nex
-cd Nextcloud/ECS/
-find 
-rename sta
-shell  %s
-shell
 trash new
 shell vim 
 shell vim &
@@ -28,12 +18,10 @@ search EC2_22
 search Dwo
 search Down
 open_with a
-search Dow
 search EDP
 search EDP.pdf
 rename remarqueDS4.tex
 search cr
-delete
 search Bréz
 search Bt
 search Br
@@ -43,3 +31,20 @@ search Cri
 
 search banque
 search banqu
+search Confin
+search confin
+search CONFIN
+open_with anecs
+!pdftk
+shell pdftk
+shell pdftk EC1_24.pdf cat 1-1 output EC1_24enonce.pdf
+shell pdftk EC1_24.pdf cat 1-2 output EC1_24enonce.pdf
+shell pdftk EC1_24b.pdf cat 1-2 output EC1_24benonce.pdf
+shell pdftk EC1_24d.pdf cat 1-2 output EC1_24benonce.pdf
+shell pdftk EC1_24c.pdf cat 1-2 output EC1_24cenonce.pdf
+search Dow
+search Télé
+rename Douma.pdf
+shell unzip Re\ _Oublie_DM_EDP.zip
+shell convert *.jpeg Harbaoui.pdf
+delete

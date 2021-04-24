@@ -13,7 +13,6 @@ PS1='[\u@\h \W]\$ '
 export EDITOR=vim
 export SYSTEMD_EDITOR=vim
 
-alias gvim='gvim --remote-silent'
-
-
-alias config='/usr/bin/git --git-dir=/home/lld/.cfg/ --work-tree=/home/lld'
+if [ -f ~/.bash_aliases ]; then
+      . ~/.bash_aliases
+fi

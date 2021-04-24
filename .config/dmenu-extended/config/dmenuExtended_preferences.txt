@@ -30,7 +30,7 @@
         "-sb",
         "#073642",
         "-fn",
-        "Mononoki Nerd Font:pixelsize=14:antialias=true:hint=true",
+        "Mononoki Nerd Font:pixelsize=21:antialias=true:hint=true",
         "-l",
         "20"
     ],
