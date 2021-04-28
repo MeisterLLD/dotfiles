@@ -1,7 +1,3 @@
-trash new
-shell vim 
-shell vim &
-rename DM4-complexes-polynomesfd.tex
 rename PC2_6.pdf
 delete 
 deletey
@@ -25,7 +21,6 @@ search cr
 search Bréz
 search Bt
 search Br
-search next
 search Liv
 search Cri
 
@@ -47,4 +42,9 @@ search Télé
 rename Douma.pdf
 shell unzip Re\ _Oublie_DM_EDP.zip
 shell convert *.jpeg Harbaoui.pdf
+search Nex
+search next
+search doc
+search aca
 delete
+rename TP11-var-discretes

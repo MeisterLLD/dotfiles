@@ -8,7 +8,7 @@ autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_v
 
 "si gVim on vire les menus etc
 if has('gui_running')
-  set guifont=Ubuntu\ Mono\ 14
+  set guifont=Ubuntu\ Mono\ 12
   set guioptions -=T
   set guioptions -=r
   set guioptions -=m

@@ -1,5 +1,12 @@
 #!/bin/sh
-# The famous "get a menu of emojis to copy" script.
+# Based on Lukesmith's famous "get a menu of emojis to copy" script.
+
+# This will feed dmenu with ~/.local/share/unicode, a UTF-8 file which contains all sort of unicode characters in the following format
+# glyph1 description 1
+# glyph2 description 2
+# ...
+# Using dmenu fuzzy find, you can quickly get the character you are looking for and pressing enter copies it in the clipboard.
+
 
 # Get user selection via dmenu from emoji file.
 chosen=$(cut -d ';' -f1 ~/.local/share/unicode | dmenu -i -l 30 | sed "s/ .*//")
