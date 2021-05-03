@@ -18,3 +18,4 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export PATH=$PATH:/opt/pdf4teachers/
+export PATH=$PATH:/home/lld/.local/bin/

@@ -21,10 +21,9 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Spacing
---import XMonad.Hooks.ServerMode
-
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import Control.Monad -- liftM2
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -246,12 +245,14 @@ myManageHook = composeAll
     , className =? "vlc"            --> doFloat
     -- toolkit = le lecteur incrusté de FF
     , title =? "Incrustation vidéo" --> doFloat
-    , className =? "firefox"        --> doShift "1:web"
-    , className =? "Thunderbird"    --> doShift "3:mel"
-    , className =? ""               --> doShift "4:spo"
+    , className =? "firefox"        --> viewShift "1:web"
+    , className =? "Gvim"           --> viewShift "2:vim"
+    , className =? "Thunderbird"    --> viewShift "3:mel"
+    , className =? ""               --> viewShift "4:spo"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , isFullscreen --> doFullFloat ]
+  where    viewShift = doF . liftM2 (.) W.greedyView W.shift
 
 addNETSupported :: Atom -> X ()
 addNETSupported x   = withDisplay $ \dpy -> do

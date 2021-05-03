@@ -1,19 +1,13 @@
-rename PC2_6.pdf
-delete 
-deletey
-shell vim G
 q
 rename TD8-Matrices-EV.tex
 rename TP4-Matrices-systemes
 search 16
-open_with 
 rename
 rename Chapitre16-Dérivees_successives.tex
 search 14
 search EC2_22
 search Dwo
 search Down
-open_with a
 search EDP
 search EDP.pdf
 rename remarqueDS4.tex
@@ -23,7 +17,6 @@ search Bt
 search Br
 search Liv
 search Cri
-
 search banque
 search banqu
 search Confin
@@ -48,3 +41,10 @@ search doc
 search aca
 delete
 rename TP11-var-discretes
+open_with a
+open_with 
+
+mkdir Corrig
+mkdir Corrigés
+touch ESSEC-MathsII-2021-corrige.tex
+search 24b

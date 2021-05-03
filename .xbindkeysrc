@@ -87,8 +87,15 @@
 
 #Calculatrice
 "speedcrunch"
-    m:0x50 + c:76
-    Mod2+Mod4 + F10 
+   Mod4 + F10
+
+#dmenuunicode
+"dmenuunicode"
+   Mod4+F9
+
+#Flameshot
+"flameshot gui"
+   Shift+Mod4+S
 
 #
 # End of xbindkeys configuration
