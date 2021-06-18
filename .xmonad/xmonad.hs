@@ -242,11 +242,14 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
+    , className =? "@molotov/desktop-wrapper"     --> doFloat
     , className =? "vlc"            --> doFloat
+    , className =? "SpeedCrunch"    --> doFloat
     -- toolkit = le lecteur incrusté de FF
-    , title =? "Incrustation vidéo" --> doFloat
+    --, title =? "Incrustation vidéo" --> doFloat
     , className =? "firefox"        --> viewShift "1:web"
     , className =? "Gvim"           --> viewShift "2:vim"
+    , className =? "discord"        --> viewShift "6:dis"
     , className =? "Thunderbird"    --> viewShift "3:mel"
     , className =? ""               --> viewShift "4:spo"
     , resource  =? "desktop_window" --> doIgnore
@@ -306,6 +309,7 @@ myStartupHook = do
   spawnOnce "xbindkeys &"
   spawnOnce "exec /usr/bin/trayer --edge top --align right --width 8  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
   spawnOnce "nextcloud &"
+  spawnOnce "redshift-gtk -l 49.119:6.175 &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

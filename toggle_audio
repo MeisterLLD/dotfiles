@@ -1,10 +1,10 @@
 #!/bin/sh
 sortie=$(pactl list short sinks | grep RUNNING | cut -c 1-1)
-dacmagic="0"
+dacmagic="4"
 hp="2"
 
 if [ $sortie == $hp ];  then
-  pacmd set-default-sink 0
+  pacmd set-default-sink 4
 elif [ $sortie == $dacmagic ]; then
   pacmd set-default-sink 2
 fi

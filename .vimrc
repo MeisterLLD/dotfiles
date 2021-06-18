@@ -296,6 +296,7 @@ autocmd FileType scilab inoremap <F10> <Esc>:call asyncrun#quickfix_toggle(8)<CR
 autocmd FileType scilab noremap <F8> :w<CR>:!scilab -nw -f %<CR>
 autocmd FileType scilab inoremap <F8> <Esc>:w<CR>:!scilab -nw -f %<CR>
 
+
 " execution Python F9
 autocmd FileType python noremap <F9> :w<CR>:!python3 %<CR>
 autocmd FileType python inoremap <F9> <Esc>:w<CR>:!python3 %<CR>
@@ -327,3 +328,6 @@ let did_load_csvfiletype=1
 augroup filetypedetect
   au! BufRead,BufNewFile *.csv,*.dat	setfiletype csv
 augroup END
+
+
+autocmd FileType php nmap <F5> ysiw<s>
