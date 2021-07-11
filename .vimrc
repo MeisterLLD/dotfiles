@@ -63,6 +63,7 @@ Plugin 'ap/vim-buftabline'
 Plugin 'longkey1/vim-lf'
 Plugin 'dpelle/vim-Grammalecte'
 Plugin 'chrisbra/csv.vim'
+Plugin 'vim-scripts/Align'
 if has('gui_running')
   Plugin 'HendrikPetertje/vimify'
 endif
@@ -89,7 +90,7 @@ filetype indent on
 let g:tex_flavor='latex'
 " Réglages compilation latex
 let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -interaction=nonstopmode -shell-escape $*'
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -file-line-error -interaction=nonstopmode $*'
 " On visualise avec evince pour vim (pas réussi à forward sync zathura)
 let g:Tex_ViewRule_pdf = 'zathura'
@@ -197,7 +198,7 @@ let NERDTreeQuitOnOpen=1
 let g:NERDTreeChDirMode = 2
 
 " Compile rapport F8
-autocmd FileType tex inoremap <C-x> \exercice{}<++><Esc>4<left>i
+autocmd FileType tex inoremap <C-x> \exercice{}<Esc>4<left>i
 map <F8> :w<CR> :!./rapport.sh %<CR><F9><CR>
 imap <F8> <Esc>:w<CR> :!./rapport.sh %<CR><F9><CR>i
 
@@ -331,3 +332,5 @@ augroup END
 
 
 autocmd FileType php nmap <F5> ysiw<s>
+autocmd FileType tex inoremap MIT \mintinline{python}{}<++><Esc>4<left>i
+autocmd FileType tex vnoremap <nowait> MIT <Esc>`>a}<Esc>gv<Esc>`<i\mintinline{python}{<Esc>$

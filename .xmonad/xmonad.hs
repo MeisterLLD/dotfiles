@@ -309,7 +309,7 @@ myStartupHook = do
   spawnOnce "xbindkeys &"
   spawnOnce "exec /usr/bin/trayer --edge top --align right --width 8  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
   spawnOnce "nextcloud &"
-  spawnOnce "redshift-gtk -l 49.119:6.175 &"
+  spawnOnce "redshift &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

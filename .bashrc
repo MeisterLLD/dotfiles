@@ -17,5 +17,5 @@ if [ -f ~/.bash_aliases ]; then
       . ~/.bash_aliases
 fi
 
-export PATH=$PATH:/opt/pdf4teachers/
+export PATH=$PATH:/opt/pdf4teachers/bin/
 export PATH=$PATH:/home/lld/.local/bin/
