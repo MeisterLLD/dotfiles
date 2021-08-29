@@ -25,6 +25,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Control.Monad -- liftM2
 
+
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
@@ -73,11 +74,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -b  -fn 'Mononoki Nerd Font:size=11'")
+    -- launch dmenu with instant 1 match opening
+    , ((modm,               xK_p     ), spawn "dmenu_run -b -n  -fn 'Mononoki Nerd Font:size=11'")
 
-    -- launch dmenu
+    -- launch dmenu classic 
+    , ((modm .|. shiftMask, xK_p     ), spawn "dmenu_run -b  -fn 'Mononoki Nerd Font:size=11'")
+
+    -- launch dmenu extended
     , ((modm .|. shiftMask, xK_h     ), spawn "dmenu_extended_run")
+
+    -- launch bookmenu 
+    , ((modm,               xK_b     ), spawn "bookmenu")
     
     -- launch ranger 
     , ((modm,               xK_r     ), spawn "st ranger")
@@ -86,7 +93,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_v     ), spawn "gvim +History")
 
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    --, ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -151,6 +158,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+
+
+     -- Toggle Fullscreen
+    , ((modm              , xK_f), toggleFull)
     ]
     ++
 
@@ -173,6 +184,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_w, xK_e, xK_x] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+
+
+
 
 
 ------------------------------------------------------------------------
@@ -415,3 +430,13 @@ help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "mod-button1  Set the window to floating mode and move by dragging",
     "mod-button2  Raise the window to the top of the stack",
     "mod-button3  Set the window to floating mode and resize by dragging"]
+
+
+-------
+--Looks to see if focused window is floating and if it is the places it in the stack
+--else it makes it floating but as full screen
+toggleFull = withFocused (\windowId -> do
+    { floats <- gets (W.floating . windowset);
+        if windowId `M.member` floats
+        then withFocused $ windows . W.sink
+        else withFocused $ windows . (flip W.float $ W.RationalRect 0 0 1 1) })  
