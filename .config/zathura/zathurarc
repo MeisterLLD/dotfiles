@@ -68,3 +68,5 @@ set window-width 800
 #
 #
 map H :exec sh -c "cat ~/.local/share/zathura/history | grep -Po '\[\K[^\]]*' | dmenu | xargs zathura"
+set show-recent 0
+#set show-directories 1

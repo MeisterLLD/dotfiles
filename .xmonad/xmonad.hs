@@ -83,7 +83,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch dmenu extended
     , ((modm .|. shiftMask, xK_h     ), spawn "dmenu_extended_run")
 
-    -- launch bookmenu 
+    -- launch dmenu extended piped into dragon drag and drop
+    , ((modm .|. shiftMask, xK_y     ), spawn "dmenu_extended_run \"dragon-drag-and-drop:\"")
+    
+-- launch bookmenu 
     , ((modm,               xK_b     ), spawn "bookmenu")
     
     -- launch ranger 
@@ -266,7 +269,7 @@ myManageHook = composeAll
     , className =? "Gvim"           --> viewShift "2:vim"
     , className =? "discord"        --> viewShift "6:dis"
     , className =? "Thunderbird"    --> viewShift "3:mel"
-    , className =? ""               --> viewShift "4:spo"
+    -- , className =? ""               --> viewShift "4:spo"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , isFullscreen --> doFullFloat ]
@@ -324,7 +327,7 @@ myStartupHook = do
   spawnOnce "xbindkeys &"
   spawnOnce "exec /usr/bin/trayer --edge top --align right --width 8  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
   spawnOnce "nextcloud &"
-  spawnOnce "redshift &"
+  spawnOnce "redshift-gtk &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -339,8 +342,8 @@ main = do
           ppOutput = hPutStrLn xmproc
          ,ppVisible = xmobarColor "#006400" "" 
          ,ppTitle = xmobarColor "#4682b4" "" 
-         ,ppCurrent = xmobarColor "#8b0000" ""
-         ,ppHidden  = xmobarColor "#006400" ""
+         ,ppCurrent = xmobarColor "#fff200" ""
+         ,ppHidden  = xmobarColor "#ba291c" ""
          ,ppLayout = xmobarColor"#657b83" ""
          ,ppUrgent = xmobarColor "#657b83" "" . wrap "[" "]" 
       }
