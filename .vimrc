@@ -338,3 +338,10 @@ augroup END
 autocmd FileType php nmap <F5> ysiw<s>
 autocmd FileType tex inoremap MIT \mintinline{python}{}<++><Esc>4<left>i
 autocmd FileType tex vnoremap <nowait> MIT <Esc>`>a}<Esc>gv<Esc>`<i\mintinline{python}{<Esc>$
+
+
+autocmd FileType tex inoremap ]] \left], <++>\right] <++><Esc>17<left>i
+autocmd FileType tex inoremap ][ \left], <++>\right[ <++><Esc>17<left>i
+autocmd FileType tex inoremap [] \left[, <++>\right] <++><Esc>17<left>i
+autocmd FileType tex inoremap [[ \left[, <++>\right[ <++><Esc>17<left>i
+
