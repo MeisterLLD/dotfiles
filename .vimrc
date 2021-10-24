@@ -64,8 +64,9 @@ Plugin 'longkey1/vim-lf'
 Plugin 'dpelle/vim-Grammalecte'
 Plugin 'chrisbra/csv.vim'
 Plugin 'vim-scripts/Align'
+Plugin 'mg979/vim-visual-multi'
 if has('gui_running')
-  Plugin 'HendrikPetertje/vimify'
+ Plugin 'HendrikPetertje/vimify'
 endif
 call vundle#end()            " required
 " ----------------------------------------------------------------------------------------------
