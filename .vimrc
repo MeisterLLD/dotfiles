@@ -206,6 +206,7 @@ imap <F8> <Esc>:w<CR> :!./rapport.sh %<CR><F9><CR>i
 
 " Tend vers quand n tend vers l'infini
 autocmd FileType tex inoremap tvn \tendvers{n}{+\infty}{}<++><Esc>4<left>i
+autocmd FileType tex inoremap tvx \tendvers{x}{}{<++>}<++><Esc>10<left>i
 
 " Limite
 autocmd FileType tex inoremap LIM \lim\limits_{ \to <++>} <++><Esc>14<left>i
