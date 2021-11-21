@@ -64,7 +64,7 @@ Plugin 'longkey1/vim-lf'
 Plugin 'dpelle/vim-Grammalecte'
 Plugin 'chrisbra/csv.vim'
 Plugin 'vim-scripts/Align'
-Plugin 'mg979/vim-visual-multi'
+Plugin 'terryma/vim-multiple-cursors'
 if has('gui_running')
  Plugin 'HendrikPetertje/vimify'
 endif

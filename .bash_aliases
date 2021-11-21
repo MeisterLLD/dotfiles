@@ -4,4 +4,4 @@ alias config='/usr/bin/git --git-dir=/home/lld/.cfg/ --work-tree=/home/lld'
 #alias spotify='/usr/bin/spotify --force-device-scale-factor=1.5' 
 #alias spotify='sspotify'
 alias spotify='qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.OpenUri %U'
-
+alias r='ranger'
