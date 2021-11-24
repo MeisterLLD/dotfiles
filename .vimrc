@@ -62,7 +62,7 @@ Plugin 'skywind3000/asyncrun.vim'
 Plugin 'ap/vim-buftabline'
 Plugin 'longkey1/vim-lf'
 Plugin 'dpelle/vim-Grammalecte'
-Plugin 'chrisbra/csv.vim'
+Plugin 'mechatroner/rainbow_csv'
 Plugin 'vim-scripts/Align'
 Plugin 'terryma/vim-multiple-cursors'
 if has('gui_running')
@@ -143,6 +143,9 @@ endif
 " -------------------------------------------------------------------------------------------------------------------------------------
 " pas trop indenter
 set shiftwidth=2 
+
+" reconnaitre les ref: pour suggestion avec <C-n>
+set iskeyword+=:
 
 " Barres de mode en couleur (plugin lightline) 
 set laststatus=2
@@ -264,6 +267,10 @@ let g:Tex_SmartQuoteClose = '\fg{}'
 let g:Tex_AdvancedMath = 1
 " ne pas indenter les { }, très important pour que le tex ne devienne pas illisible
 let g:tex_indent_brace = 0
+
+" ne pas indenter le code Python (le faire à la main)
+let g:tex_noindent_env = 'minted'
+
 " Sauter les <++> avec TAB
 autocmd FileType tex imap <TAB> <Plug>IMAP_JumpForward
 " auto remplacement des double dollar
@@ -325,15 +332,6 @@ nnoremap <C-F9>
 
 "let g:grammalecte_cli_py='~/Grammalecte-fr-v1.8.0/grammalecte-cli.py'
 "setlocal spell spelllang=fr
-
-if exists("did_load_csvfiletype")
-  finish
-endif
-let did_load_csvfiletype=1
-
-augroup filetypedetect
-  au! BufRead,BufNewFile *.csv,*.dat	setfiletype csv
-augroup END
 
 
 autocmd FileType php nmap <F5> ysiw<s>
