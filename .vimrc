@@ -311,11 +311,10 @@ autocmd FileType scilab inoremap <F8> <Esc>:w<CR>:!scilab -nw -f %<CR>
 
 
 " execution Python F9
-autocmd FileType python noremap <F9> :w<CR>:!python3 %<CR>
-autocmd FileType python inoremap <F9> <Esc>:w<CR>:!python3 %<CR>
+autocmd FileType python nmap <F9> :w<CR>:AsyncRun python % <CR>
 autocmd FileType python let $PYTHONUNBUFFERED=1
-autocmd FileType python noremap <F10> :call asyncrun#quickfix_toggle(8)<CR>
-autocmd FileType python inoremap <F10> <Esc>:call asyncrun#quickfix_toggle(8)<CR>i
+autocmd FileType python nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
+
 
 " régler bug couleur highlight random
 set t_ut=""
@@ -337,10 +336,19 @@ nnoremap <C-F9>
 autocmd FileType php nmap <F5> ysiw<s>
 autocmd FileType tex inoremap MIT \mintinline{python}{}<++><Esc>4<left>i
 autocmd FileType tex vnoremap <nowait> MIT <Esc>`>a}<Esc>gv<Esc>`<i\mintinline{python}{<Esc>$
-
+autocmd FileType tex inoremap MIN \begin{minted}{python}<CR><CR>\end{minted}<++><Esc>ki
 
 autocmd FileType tex inoremap ]] \left], <++>\right] <++><Esc>17<left>i
 autocmd FileType tex inoremap ][ \left], <++>\right[ <++><Esc>17<left>i
 autocmd FileType tex inoremap [] \left[, <++>\right] <++><Esc>17<left>i
 autocmd FileType tex inoremap [[ \left[, <++>\right[ <++><Esc>17<left>i
+
+# Augmenter ou diminuer la police
+nnoremap <C-Up> :silent! let &guifont = substitute(&guifont,'\zs\d\+','\=eval(submatch(0)+1)','')<CR>
+nnoremap <C-Down> :silent! let &guifont = substitute(
+ \ &guifont,
+ \ '\zs\d\+',
+ \ '\=eval(submatch(0)-1)',
+ \ '')<CR>
+
 
