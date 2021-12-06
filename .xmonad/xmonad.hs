@@ -335,11 +335,12 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do 
-  xmproc <- spawnPipe "xmobar"
+  xmproc0 <- spawnPipe "xmobar -x 0"
+  xmproc1 <- spawnPipe "xmobar -x 1"
   -- xmonad $ docks defaults
   xmonad $ ewmh $ docks $ defaults {
         logHook = dynamicLogWithPP $ xmobarPP {
-          ppOutput = hPutStrLn xmproc
+          ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x 
          ,ppVisible = xmobarColor "#006400" "" 
          ,ppTitle = xmobarColor "#4682b4" "" 
          ,ppCurrent = xmobarColor "#fff200" ""
