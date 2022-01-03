@@ -21,6 +21,7 @@ import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog
 import XMonad.Layout.Spacing
+import XMonad.Actions.NoBorders
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Control.Monad -- liftM2
@@ -435,12 +436,20 @@ help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "mod-button2  Raise the window to the top of the stack",
     "mod-button3  Set the window to floating mode and resize by dragging"]
 
-
 -------
+
+
 --Looks to see if focused window is floating and if it is the places it in the stack
 --else it makes it floating but as full screen
 toggleFull = withFocused (\windowId -> do
-    { floats <- gets (W.floating . windowset);
+    { 
+      floats <- gets (W.floating . windowset);
         if windowId `M.member` floats
-        then withFocused $ windows . W.sink
-        else withFocused $ windows . (flip W.float $ W.RationalRect 0 0 1 1) })  
+        then do 
+	   withFocused $ toggleBorder
+           withFocused $ windows . W.sink
+        else do 
+	   withFocused $ toggleBorder
+           withFocused $  windows . (flip W.float $ W.RationalRect 0 0 1 1) 
+   } 
+   )  

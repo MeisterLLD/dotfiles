@@ -5,3 +5,5 @@
 #set-default-sink alsa_output.pci-0000_0c_00.3.HiFi__hw_Generic__sink
 #set-default-source alsa_output.pci-0000_0c_00.3.HiFi__hw_Generic__sink 
 
+# Virer le son Nvidia
+#set-card-profile alsa_card.pci-0000_0a_00.1 off

@@ -315,6 +315,7 @@ autocmd FileType python nmap <F9> :w<CR>:AsyncRun python % <CR>
 autocmd FileType python let $PYTHONUNBUFFERED=1
 autocmd FileType python nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
 autocmd FileType python nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
+autocmd FileType python nmap <C-K> :AsyncStop<CR>
 
 
 
