@@ -97,5 +97,10 @@
 "flameshot gui"
    Shift+Mod4+S
 
+#Remark
+"xrandr --output HDMI-0 --mode 1920x1080 & sleep 5 & xrandr --output HDMI-0 --mode 3840x2160 & sleep 5 & extramonitor extra"
+    m:0x51 + c:40
+    Shift+Mod2+Mod4 + d 
+
 #
 # End of xbindkeys configuration
