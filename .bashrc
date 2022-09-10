@@ -19,3 +19,5 @@ fi
 
 export PATH=$PATH:/opt/pdf4teachers/bin/
 export PATH=$PATH:/home/lld/.local/bin/
+
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'

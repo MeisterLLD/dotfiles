@@ -152,8 +152,8 @@ set laststatus=2
 set noshowmode
 
 " Ouvrir un fichier avec fzf 
-nnoremap <leader>f :FZF! ~/<cr>
-"nnoremap <leader>f :FZF! /mnt/d/OneDrive\ -\ ac-nancy-metz.fr/Nextcloud/<cr>
+nnoremap <leader>ff :FZF! ~/<cr>
+nnoremap <leader>f :FZF! ~/Nextcloud/<cr>
 "nnoremap <leader>f :FZF! /mnt/c/Users/dietr/OneDrive\ -\ ac-nancy-metz.fr/Nextcloud/<cr>
 " Regarder les buffers
 nnoremap <leader>b :Buffer ~/<cr>
@@ -352,6 +352,9 @@ autocmd FileType tex inoremap ]] \left], <++>\right] <++><Esc>17<left>i
 autocmd FileType tex inoremap ][ \left], <++>\right[ <++><Esc>17<left>i
 autocmd FileType tex inoremap [] \left[, <++>\right] <++><Esc>17<left>i
 autocmd FileType tex inoremap [[ \left[, <++>\right[ <++><Esc>17<left>i
+
+
+autocmd FileType tex inoremap e^ \mathrm{e}^{}<++> <Esc>5<left>i 
 
 " Augmenter ou diminuer la police
 nnoremap <C-Up> :silent! let &guifont = substitute(&guifont,'\zs\d\+','\=eval(submatch(0)+1)','')<CR>
