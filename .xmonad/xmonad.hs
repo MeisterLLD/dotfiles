@@ -83,9 +83,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch dmenu extended
     , ((modm .|. shiftMask, xK_h     ), spawn "dmenu_extended_run")
+    , ((modm .|. shiftMask, xK_h     ), spawn "rofi -show file-browser-extended -file-browser-depth 6")
+
 
     -- launch dmenu extended piped into dragon drag and drop
-    , ((modm .|. shiftMask, xK_y     ), spawn "dmenu_extended_run \"dragon-drag-and-drop:\"")
+    , ((modm .|. shiftMask, xK_y     ), spawn "dmenu_extended_run \"dragon-drag-and-drop:\"")    
+    , ((modm .|. shiftMask, xK_y     ), spawn "rofi -show file-browser-extended -file-browser-depth 6 -file-browser-cmd dragon-drop")
+
+   
     
 -- launch bookmenu 
     , ((modm,               xK_b     ), spawn "bookmenu")
