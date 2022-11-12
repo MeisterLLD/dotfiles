@@ -25,6 +25,7 @@ import XMonad.Actions.NoBorders
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Control.Monad -- liftM2
+import XMonad.Layout.ResizableTile
 
 
 -- The preferred terminal program, which is used in a binding below and by
@@ -83,12 +84,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch dmenu extended
     , ((modm .|. shiftMask, xK_h     ), spawn "dmenu_extended_run")
-    , ((modm .|. shiftMask, xK_h     ), spawn "rofi -show file-browser-extended -file-browser-depth 6")
+    , ((modm .|. shiftMask, xK_h     ), spawn "rofi -modi file-browser-extended -show file-browser-extended -file-browser-depth 7")
 
 
     -- launch dmenu extended piped into dragon drag and drop
     , ((modm .|. shiftMask, xK_y     ), spawn "dmenu_extended_run \"dragon-drag-and-drop:\"")    
-    , ((modm .|. shiftMask, xK_y     ), spawn "rofi -show file-browser-extended -file-browser-depth 6 -file-browser-cmd dragon-drop")
+    , ((modm .|. shiftMask, xK_y     ), spawn "rofi -modi file-browser-extended -show file-browser-extended -file-browser-depth 7 -file-browser-cmd dragon-drop")
 
    
     
@@ -171,6 +172,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
      -- Toggle Fullscreen
     , ((modm              , xK_f), toggleFull)
+
+    -- ResizableTall
+    , ((modm,               xK_Up), sendMessage MirrorExpand)
+    , ((modm,               xK_Down), sendMessage MirrorShrink)
     ]
     ++
 
@@ -237,7 +242,7 @@ addSpace = spacingRaw
 myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = addSpace $ Tall nmaster delta ratio
+     tiled   = addSpace $ ResizableTall nmaster delta ratio []
 
      -- The default number of windows in the master pane
      nmaster = 1
@@ -344,7 +349,7 @@ main = do
   xmproc0 <- spawnPipe "xmobar -x 0"
   xmproc1 <- spawnPipe "xmobar -x 1"
   -- xmonad $ docks defaults
-  xmonad $ ewmh $ docks $ defaults {
+  xmonad $ ewmhFullscreen . ewmh $ docks $ defaults {
         logHook = dynamicLogWithPP $ xmobarPP {
           ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x 
          ,ppVisible = xmobarColor "#006400" "" 
@@ -384,7 +389,8 @@ defaults = def {
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook,
-        handleEventHook    = myEventHook <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook,
+        --handleEventHook    = myEventHook <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook,
+        handleEventHook    = myEventHook, 
         logHook            = myLogHook,
       --logHook            = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc },
         startupHook        = myStartupHook >> addEWMHFullscreen
@@ -451,10 +457,10 @@ toggleFull = withFocused (\windowId -> do
       floats <- gets (W.floating . windowset);
         if windowId `M.member` floats
         then do 
-	   withFocused $ toggleBorder
+           withFocused $ toggleBorder
            withFocused $ windows . W.sink
         else do 
-	   withFocused $ toggleBorder
+           withFocused $ toggleBorder
            withFocused $  windows . (flip W.float $ W.RationalRect 0 0 1 1) 
    } 
    )  
