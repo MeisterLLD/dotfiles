@@ -3,8 +3,9 @@ Config {
    -- appearance
     font = "xft:Mononoki Nerd Font:pixelsize=21:antialias=true:hinting=true"
    , additionalFonts = [ "xft:Symbola:pixelsize=21",
-			 "xft:Koruri:pixelsize=18",
-			 "xft:Inconsolata for Powerline:pixelsize=18:antialias=true:autohint=true"
+			 "xft:Koruri:pixelsize=21",
+			 "xft:Inconsolata for Powerline:pixelsize=18:antialias=true:autohint=true",
+                         "xft:Noto Emoji:style=Regular:pixelsize=22:antialias=true:hinting=light"
                         ]
    , bgColor = "#002b36"
    , fgColor = "#657b83"
@@ -15,7 +16,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fn=2>%StdinReader%</fn> | %multicpu% | %multicoretemp% | %memory%}{<fn=2>♫ %music%</fn> | %LFJL% | %mydate% | %kbd% |                              "
+   , template = "<fn=2>%StdinReader%</fn> | %multicpu% •%multicoretemp% • %memory% |}{<fn=2>♫ %music%</fn> | %LFJL% | %mydate% |                          "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -40,46 +41,59 @@ Config {
    --   color can be set by enclosing in <fc></fc> tags. For more details
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands =
-
-
+        [
         -- weather monitor
-        --[ Run Weather "LFJL" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
-        [ Run Weather "LFJL" [ "--template", "<fc=#4682B4><tempC></fc>°C"
-                             ] 36000
+            Run WeatherX "LFJL"
+           [ ("clear", "🌣")
+           , ("sunny", "🌣")
+           , ("mostly clear", "🌤")
+           , ("mostly sunny", "🌤")
+           , ("partly sunny", "⛅")
+           , ("fair", "🌑")
+           , ("cloudy","☁")
+           , ("overcast","☁")
+           , ("partly cloudy", "⛅")
+           , ("mostly cloudy", "🌧")
+           , ("", "🌃")
+           , ("considerable cloudiness", "⛈")]
+           ["-t", "<fn=4><skyConditionS></fn> • <tempC>°C • <fn=4>💧</fn><rh>% • <fn=4>💨</fn> <windKmh>km/h"
+           , "-L","10", "-H", "25", "--normal", "black"
+           , "--high", "red", "--low", "lightblue"]
+           18000
 
 
         -- network activity monitor (dynamic interface resolution)
         --, Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
         --                     , "--Low"      , "1000"       -- units: B/s
         --                    , "--High"     , "5000"       -- units: B/s
-        --                     , "--low"      , "darkgreen"
+        --                     , "--low"      , "lightblue"
         --                     , "--normal"   , "darkorange"
         --                     , "--high"     , "darkred"
         --                    ] 10
 
         -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: <total0>%"
+        , Run MultiCpu       [ "--template" , "<fn=4>🖥</fn><total0>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "lightblue"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
         -- cpu core temperature monitor
-        , Run MultiCoreTemp       [ "--template" , "T: <core0>°C"
+        , Run MultiCoreTemp       [ "--template" , "<fn=4>🌡</fn><core0>°C"
                              , "--Low"      , "70"        -- units: °C
                              , "--High"     , "80"        -- units: °C
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "lightblue"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"Ram: <usedratio>%"
+        , Run Memory         [ "--template" ,"<fn=4>🐏</fn><usedratio>%"
                              , "--Low"      , "20"        -- units: %
                              , "--High"     , "90"        -- units: %
-                             , "--low"      , "darkgreen"
+                             , "--low"      , "lightblue"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
@@ -90,7 +104,7 @@ Config {
                              , "--High"     , "80"        -- units: %
                              , "--low"      , "darkred"
                              , "--normal"   , "darkorange"
-                             , "--high"     , "darkgreen"
+                             , "--high"     , "lightblue"
 
                              , "--" -- battery specific options
                                        -- discharging status

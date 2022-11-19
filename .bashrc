@@ -19,5 +19,8 @@ fi
 
 export PATH=$PATH:/opt/pdf4teachers/bin/
 export PATH=$PATH:/home/lld/.local/bin/
+export PATH=$PATH:/opt/piavpn/bin/
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+alias git='LANG=en_US.UTF-8 git'

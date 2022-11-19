@@ -26,7 +26,9 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 import Control.Monad -- liftM2
 import XMonad.Layout.ResizableTile
-
+import XMonad.Layout.IndependentScreens
+import Data.Semigroup
+import XMonad.Hooks.DynamicProperty
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -61,7 +63,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:web","2:vim","3:mel","4:spo","5:dev","6:dis","7","8","9"]
+myWorkspaces    = ["1:web","2:vim","3:mel","4:not","5:dev","6:spo","7","8","9:pia"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -120,11 +122,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
-    -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
-
-    -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    ---- Move focus to the previous window
+    --, ((modm,               xK_k     ), windows W.focusUp  )
 
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
@@ -278,9 +277,8 @@ myManageHook = composeAll
     --, title =? "Incrustation vidéo" --> doFloat
     , className =? "firefox"        --> viewShift "1:web"
     , className =? "Gvim"           --> viewShift "2:vim"
-    , className =? "discord"        --> viewShift "6:dis"
-    , className =? "Thunderbird"    --> viewShift "3:mel"
-    -- , className =? ""               --> viewShift "4:spo"
+    , className =? "thunderbird"    --> viewShift "3:mel"
+    , title     =? "Private Internet Access"     --> doShift   "9:pia"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , isFullscreen --> doFullFloat ]
@@ -311,7 +309,18 @@ addEWMHFullscreen   = do
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty 
+
+-- Certaines fenêtres comme Spotify ou LibreOffice changent leur classname à l'ouverture, ce qui empêche
+-- de les déplacer. Il faut faire ça avec dynamicPropertyChange.
+
+myEventHook = composeAll
+   [
+   dynamicPropertyChange "WM_NAME"  (title =? "Spotify" --> viewShift "6:spo"),
+   dynamicPropertyChange "WM_NAME"  (className =? "libreoffice-calc" --> viewShift "4:not")
+   ]
+   where    viewShift = doF . liftM2 (.) W.greedyView W.shift
+   
+
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -350,14 +359,16 @@ main = do
   xmproc1 <- spawnPipe "xmobar -x 1"
   -- xmonad $ docks defaults
   xmonad $ ewmhFullscreen . ewmh $ docks $ defaults {
-        logHook = dynamicLogWithPP $ xmobarPP {
-          ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x 
-         ,ppVisible = xmobarColor "#006400" "" 
+        logHook = dynamicLogWithPP xmobarPP 
+       {  ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x 
+         ,ppVisible = xmobarColor "#fff200" ""  . wrap "(" ")"
          ,ppTitle = xmobarColor "#4682b4" "" 
-         ,ppCurrent = xmobarColor "#fff200" ""
+         ,ppCurrent = xmobarColor "#fff200" "" . wrap "[" "]"
          ,ppHidden  = xmobarColor "#ba291c" ""
+	 ,ppHiddenNoWindows  = xmobarColor "lightblue" "" . wrap "" ""  
          ,ppLayout = xmobarColor"#657b83" ""
-         ,ppUrgent = xmobarColor "#657b83" "" . wrap "[" "]" 
+         ,ppUrgent = xmobarColor "#657b83" "" . wrap "!" "!" 
+	 ,ppSep = " | "
       }
       , manageHook = manageDocks <+> myManageHook
       , startupHook = myStartupHook 
@@ -389,10 +400,8 @@ defaults = def {
       -- hooks, layouts
         layoutHook         = myLayout,
         manageHook         = myManageHook,
-        --handleEventHook    = myEventHook <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook,
         handleEventHook    = myEventHook, 
         logHook            = myLogHook,
-      --logHook            = dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc },
         startupHook        = myStartupHook >> addEWMHFullscreen
     }
 

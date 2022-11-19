@@ -202,7 +202,7 @@ let NERDTreeQuitOnOpen=1
 let g:NERDTreeChDirMode = 2
 
 " Compile rapport F8
-autocmd FileType tex inoremap <C-x> \exercice{}<Esc>4<left>i
+autocmd FileType tex inoremap <C-x> \exercice{}<Esc>i
 map <F8> :w<CR> :!./rapport.sh %<CR><F9><CR>
 imap <F8> <Esc>:w<CR> :!./rapport.sh %<CR><F9><CR>i
 
@@ -316,6 +316,12 @@ autocmd FileType python let $PYTHONUNBUFFERED=1
 autocmd FileType python nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
 autocmd FileType python nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
 autocmd FileType python nmap <C-K> :AsyncStop<CR>
+
+" execution Haskell F9
+autocmd FileType haskell nmap <F9> :w<CR>:AsyncRun runghc % <CR>
+autocmd FileType haskell nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
+autocmd FileType haskell nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
+autocmd FileType haskell nmap <C-K> :AsyncStop<CR>
 
 
 " execution oCaml F9
