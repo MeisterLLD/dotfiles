@@ -3,9 +3,10 @@ Config {
    -- appearance
     font = "xft:Mononoki Nerd Font:pixelsize=21:antialias=true:hinting=true"
    , additionalFonts = [ "xft:Symbola:pixelsize=21",
-			 "xft:Koruri:pixelsize=21",
+			 "xft:Koruri:pixelsize=22",
 			 "xft:Inconsolata for Powerline:pixelsize=18:antialias=true:autohint=true",
-                         "xft:Noto Emoji:style=Regular:pixelsize=22:antialias=true:hinting=light"
+                         "xft:Noto Emoji:style=Regular:pixelsize=22:antialias=true:hinting=light",
+			 "xft:Koruri:pixelsize=18"
                         ]
    , bgColor = "#002b36"
    , fgColor = "#657b83"
@@ -16,7 +17,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "<fn=2>%StdinReader%</fn> | %multicpu% •%multicoretemp% • %memory% |}{<fn=2>♫ %music%</fn> | %LFJL% | %mydate% |                          "
+   , template = "<fn=2>%StdinReader%</fn> | %multicpu% •%multicoretemp% • %memory% |}{<fn=4>🎺</fn> <fn=5>%music%</fn> | %LFJL% | %mydate% |             "
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -54,7 +55,6 @@ Config {
            , ("overcast","☁")
            , ("partly cloudy", "⛅")
            , ("mostly cloudy", "🌧")
-           , ("", "🌃")
            , ("considerable cloudiness", "⛈")]
            ["-t", "<fn=4><skyConditionS></fn> • <tempC>°C • <fn=4>💧</fn><rh>% • <fn=4>💨</fn> <windKmh>km/h"
            , "-L","10", "-H", "25", "--normal", "black"

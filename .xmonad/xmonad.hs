@@ -29,6 +29,9 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.IndependentScreens
 import Data.Semigroup
 import XMonad.Hooks.DynamicProperty
+import XMonad.Layout.Renamed
+import XMonad.Layout.Magnifier
+import XMonad.Layout.Spiral
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -63,7 +66,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:web","2:vim","3:mel","4:not","5:dev","6:spo","7","8","9:pia"]
+myWorkspaces    = ["1:web","2:vim","3:mel","4:not","5:dev","6:spo","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -238,10 +241,10 @@ addSpace = spacingRaw
   True  (Border 0 10 0 10) 
   True
 
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| magnifier tiled ||| spiral (6/7))
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = addSpace $ ResizableTall nmaster delta ratio []
+     tiled   = renamed [Replace "Tiled"] $ addSpace $ ResizableTall nmaster delta ratio []
 
      -- The default number of windows in the master pane
      nmaster = 1
@@ -278,7 +281,7 @@ myManageHook = composeAll
     , className =? "firefox"        --> viewShift "1:web"
     , className =? "Gvim"           --> viewShift "2:vim"
     , className =? "thunderbird"    --> viewShift "3:mel"
-    , title     =? "Private Internet Access"     --> doShift   "9:pia"
+    , title     =? "Private Internet Access"     --> doShift   "9"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
     , isFullscreen --> doFullFloat ]
@@ -345,7 +348,7 @@ myStartupHook = do
   -- spawnOnce "picom &"
   spawnOnce "nm-applet &"
   spawnOnce "xbindkeys &"
-  spawnOnce "exec /usr/bin/trayer --edge top --align right --width 8  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
+  spawnOnce "exec /usr/bin/trayer --edge top --align right --width 4  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
   spawnOnce "nextcloud &"
   spawnOnce "redshift-gtk &"
 
@@ -362,11 +365,11 @@ main = do
         logHook = dynamicLogWithPP xmobarPP 
        {  ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x 
          ,ppVisible = xmobarColor "#fff200" ""  . wrap "(" ")"
-         ,ppTitle = xmobarColor "#4682b4" "" 
+         ,ppTitle = xmobarColor "orange" "" 
          ,ppCurrent = xmobarColor "#fff200" "" . wrap "[" "]"
-         ,ppHidden  = xmobarColor "#ba291c" ""
-	 ,ppHiddenNoWindows  = xmobarColor "lightblue" "" . wrap "" ""  
-         ,ppLayout = xmobarColor"#657b83" ""
+         ,ppHidden  = xmobarColor "#ba291c" "" . wrap "[" "]"
+	 ,ppHiddenNoWindows  = xmobarColor "lightblue" "" . wrap "[" "]"  
+         ,ppLayout = xmobarColor"white" ""
          ,ppUrgent = xmobarColor "#657b83" "" . wrap "!" "!" 
 	 ,ppSep = " | "
       }
