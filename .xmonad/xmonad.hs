@@ -82,7 +82,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu with instant 1 match opening
-    , ((modm,               xK_p     ), spawn "dmenu_run -b -n -nf '#eee8d5' -sb '#002b36'  -nb '#002b36' -sf '#268bd2'  -fn 'Ubuntu:size=18'")
+    , ((modm,               xK_p     ), spawn "dmenu_run -b -n -nf '#eee8d5' -sb '#002b36'  -nb '#002b36' -sf '#2aa198'  -fn 'Ubuntu:size=18'")
 
     -- launch dmenu classic 
     , ((modm .|. shiftMask, xK_p     ), spawn "dmenu_run -b  -fn 'Ubuntu:size=13'")
