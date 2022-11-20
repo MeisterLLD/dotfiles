@@ -66,7 +66,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:web","2:vim","3:mel","4:not","5:dev","6:spo","7","8","9"]
+myWorkspaces    = ["web","vim","mel","not","dev","spo","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -278,9 +278,9 @@ myManageHook = composeAll
     , className =? "SpeedCrunch"    --> doFloat
     -- toolkit = le lecteur incrusté de FF
     --, title =? "Incrustation vidéo" --> doFloat
-    , className =? "firefox"        --> viewShift "1:web"
-    , className =? "Gvim"           --> viewShift "2:vim"
-    , className =? "thunderbird"    --> viewShift "3:mel"
+    , className =? "firefox"        --> viewShift "web"
+    , className =? "Gvim"           --> viewShift "vim"
+    , className =? "thunderbird"    --> viewShift "mel"
     , title     =? "Private Internet Access"     --> doShift   "9"
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore
@@ -318,8 +318,8 @@ addEWMHFullscreen   = do
 
 myEventHook = composeAll
    [
-   dynamicPropertyChange "WM_NAME"  (title =? "Spotify" --> viewShift "6:spo"),
-   dynamicPropertyChange "WM_NAME"  (className =? "libreoffice-calc" --> viewShift "4:not")
+   dynamicPropertyChange "WM_NAME"  (title =? "Spotify" --> viewShift "spo"),
+   dynamicPropertyChange "WM_NAME"  (className =? "libreoffice-calc" --> viewShift "not")
    ]
    where    viewShift = doF . liftM2 (.) W.greedyView W.shift
    
@@ -348,9 +348,10 @@ myStartupHook = do
   -- spawnOnce "picom &"
   spawnOnce "nm-applet &"
   spawnOnce "xbindkeys &"
-  spawnOnce "exec /usr/bin/trayer --edge top --align right --width 4  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
+  spawnOnce "exec /usr/bin/trayer --edge top --align right --width 5  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
   spawnOnce "nextcloud &"
   spawnOnce "redshift-gtk &"
+  spawnOnce "extramonitor extra &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -365,7 +366,7 @@ main = do
         logHook = dynamicLogWithPP xmobarPP 
        {  ppOutput = \x -> hPutStrLn xmproc0 x  >> hPutStrLn xmproc1 x 
          ,ppVisible = xmobarColor "#fff200" ""  . wrap "(" ")"
-         ,ppTitle = xmobarColor "orange" "" 
+         ,ppTitle = xmobarColor "orange" ""  . shorten 50
          ,ppCurrent = xmobarColor "#fff200" "" . wrap "[" "]"
          ,ppHidden  = xmobarColor "#ba291c" "" . wrap "[" "]"
 	 ,ppHiddenNoWindows  = xmobarColor "lightblue" "" . wrap "[" "]"  
