@@ -85,15 +85,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_p     ), spawn "dmenu_run -b -n -nf '#eee8d5' -sb '#002b36'  -nb '#002b36' -sf '#2aa198'  -fn 'Ubuntu:size=18'")
 
     -- launch dmenu classic 
-    , ((modm .|. shiftMask, xK_p     ), spawn "dmenu_run -b  -fn 'Ubuntu:size=13'")
+    , ((modm .|. shiftMask, xK_p     ), spawn "dmenu_run -b -nf '#eee8d5' -sb '#002b36'  -nb '#002b36' -sf '#2aa198' -fn 'Ubuntu:size=13'")
 
     -- launch dmenu extended
-    , ((modm .|. shiftMask, xK_h     ), spawn "dmenu_extended_run")
+    --, ((modm .|. shiftMask, xK_h     ), spawn "dmenu_extended_run")
     , ((modm .|. shiftMask, xK_h     ), spawn "rofi -modi file-browser-extended -show file-browser-extended -file-browser-depth 7")
 
 
     -- launch dmenu extended piped into dragon drag and drop
-    , ((modm .|. shiftMask, xK_y     ), spawn "dmenu_extended_run \"dragon-drag-and-drop:\"")    
+    --, ((modm .|. shiftMask, xK_y     ), spawn "dmenu_extended_run \"dragon-drag-and-drop:\"")    
     , ((modm .|. shiftMask, xK_y     ), spawn "rofi -modi file-browser-extended -show file-browser-extended -file-browser-depth 7 -file-browser-cmd dragon-drop")
 
    

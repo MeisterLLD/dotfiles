@@ -54,6 +54,7 @@ Config {
            , ("fair", "🌑")
            , ("cloudy","☁")
            , ("overcast","☁")
+           , ("obscured","☁")
            , ("partly cloudy", "⛅")
            , ("mostly cloudy", "🌧")
            , ("considerable cloudiness", "⛈")]

@@ -13,16 +13,16 @@
 BackgroundColor=#002b36
 
 # Sets the forground color unselected items in the dmenu prompt
-ForegroundColor=#839496
+ForegroundColor=#eee8d5
 
 # Sets the background of the selected items in the dmenu prompt
-SelectedBackgroundColor=#073642
+SelectedBackgroundColor=#002b36
 
 # Sets the foreground color of the selected item in the dmenu prompt
-SelectedForegroundColor=#839496
+SelectedForegroundColor=#2aa198
 
 # Sets the font used by the dmenu prompt
-Font=Mononoki Nerd Font
+Font=Ubuntu:size=18
 
 # Sets the seperator to be used to split the names and the paths in the bookmark files
 # Seperator=:
