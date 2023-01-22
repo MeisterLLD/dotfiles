@@ -2,6 +2,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype plugin on
 syntax on
+"au BufRead,BufNewFile *.ml,*.mli compiler ocaml
 
 "Start maximized
 autocmd GUIEnter * call system("wmctrl -ir " . v:windowid . " -b add,maximized_vert,maximized_horz")
@@ -65,6 +66,7 @@ Plugin 'dpelle/vim-Grammalecte'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'vim-scripts/Align'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ocaml/vim-ocaml'
 if has('gui_running')
  Plugin 'HendrikPetertje/vimify'
 endif
@@ -317,19 +319,28 @@ autocmd FileType python nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C
 autocmd FileType python nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
 autocmd FileType python nmap <C-K> :AsyncStop<CR>
 
-" execution Haskell F9
+"  Haskell 
 autocmd FileType haskell nmap <F9> :w<CR>:AsyncRun runghc % <CR>
 autocmd FileType haskell nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
 autocmd FileType haskell nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
 autocmd FileType haskell nmap <C-K> :AsyncStop<CR>
+autocmd FileType haskell set expandtab ts=4
 
 
-" execution oCaml F9
-autocmd FileType ocaml nmap <F9> :w<CR>:AsyncRun ocaml % <CR>
-autocmd FileType ocaml let $PYTHONUNBUFFERED=1
-autocmd FileType ocaml nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
-autocmd FileType ocaml nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
-autocmd FileType ocaml nmap <C-K> :AsyncStop<CR>
+" OCAML 
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+let g:syntastic_ocaml_checkers = ['merlin']
+autocmd filetype ocaml nnoremap <F9> :make<bar>copen<CR><C-w>w
+autocmd filetype ocaml nnoremap <F8> :MerlinErrorCheck<CR>
+autocmd FileType ocaml set expandtab ts=4
+au filetype ocaml set makeprg=ocaml\ % 
+set aw
+
+"autocmd FileType ocaml nmap <F9> :w<CR>:AsyncRun ocaml % <CR>
+"autocmd FileType ocaml nmap <F10> :call asyncrun#quickfix_toggle(8)<CR><C-W>H<C-W>50> 
+"autocmd FileType ocaml nmap <F11> :call asyncrun#quickfix_toggle(8)<CR>
+"autocmd FileType ocaml nmap <C-K> :AsyncStop<CR>
 
 
 " régler bug couleur highlight random

@@ -59,7 +59,7 @@ Config {
            , ("mostly cloudy", "🌧")
            , ("considerable cloudiness", "⛈")]
            ["-t", "<fn=4><skyConditionS></fn> • <tempC>°C • <fn=4>💧</fn><rh>% • <fn=4>💨</fn> <windKmh>km/h"
-           , "-L","10", "-H", "25", "--normal", "black"
+           , "-L","10", "-H", "25", "--normal", "grey"
            , "--high", "red", "--low", "lightblue"]
            18000
 
