@@ -32,6 +32,8 @@ import XMonad.Hooks.DynamicProperty
 import XMonad.Layout.Renamed
 import XMonad.Layout.Magnifier
 import XMonad.Layout.Spiral
+import XMonad.Layout.Tabbed
+import XMonad.Layout.NoBorders
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -241,7 +243,7 @@ addSpace = spacingRaw
   True  (Border 0 10 0 10) 
   True
 
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| magnifier tiled ||| spiral (6/7))
+myLayout = smartBorders ( avoidStruts (tiled ||| Mirror tiled ||| Full ||| magnifier tiled ||| spiral (6/7)) ) 
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = renamed [Replace "Tiled"] $ addSpace $ ResizableTall nmaster delta ratio []

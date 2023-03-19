@@ -1,16 +1,16 @@
 Config { 
 
    -- appearance
-    font = "xft:Mononoki Nerd Font:pixelsize=21:antialias=true:hinting=true"
-   , additionalFonts = [ "xft:Symbola:pixelsize=21",
-			 "xft:Ubuntu:pixelsize=22",
-			 "xft:Inconsolata for Powerline:pixelsize=18:antialias=true:autohint=true",
-                         "xft:Noto Emoji:style=Regular:pixelsize=22:antialias=true:hinting=light",
-			 "xft:Koruri:pixelsize=20"
+    font = "Mononoki Nerd Font 21"
+   , additionalFonts = [ "Symbola 22",
+			 "Ubuntu 18",
+			 "Inconsolata for Powerline 18",
+                         "Noto Emoji Regular 19",
+			 "Koruri 20"
                         ]
    , bgColor = "#002b36"
    , fgColor = "#657b83"
-   , position =     Top
+   , position =     TopH 30
    , border =       BottomB
    , borderColor =  "black"
 
