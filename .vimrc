@@ -356,9 +356,9 @@ endif
 
 "Script Gautam
 nnoremap <F9>
-      \ :exec "!szathura %:r.pdf" line('.')  col('.') "% > /dev/null"<cr><cr>
+      \ :exec "!szathura %:r:S.pdf" line('.')  col('.') "% > /dev/null"<cr><cr>
 nnoremap <C-F9>
-      \ :exec "!szathura %:r.pdf" > /dev/null 2>&1 &"<cr><cr>
+      \ :exec "!szathura %:r:S.pdf" > /dev/null 2>&1 &"<cr><cr>
 
 "let g:grammalecte_cli_py='~/Grammalecte-fr-v1.8.0/grammalecte-cli.py'
 "setlocal spell spelllang=fr
