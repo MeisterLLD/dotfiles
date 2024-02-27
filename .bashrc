@@ -24,4 +24,14 @@ export PATH=$PATH:/opt/piavpn/bin/
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 alias git='LANG=en_US.UTF-8 git'
-‘eval OPAM_SWITCH_PREFIX='/home/lld/.opam/default'; export OPAM_SWITCH_PREFIX; CAML_LD_LIBRARY_PATH='/home/lld/.opam/default/lib/stublibs:/usr/lib/ocaml/stublibs:/usr/lib/ocaml'; export CAML_LD_LIBRARY_PATH; OCAML_TOPLEVEL_PATH='/home/lld/.opam/default/lib/toplevel'; export OCAML_TOPLEVEL_PATH; MANPATH=':/home/lld/.opam/default/man'; export MANPATH; PATH='/home/lld/.opam/default/bin:/usr/local/texlive/2021/bin/x86_64-linux:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/lld/.fzf/bin:/opt/pdf4teachers/bin/:/home/lld/.local/bin/:/opt/piavpn/bin/:/opt/pdf4teachers/bin/:/home/lld/.local/bin/:/opt/piavpn/bin/'; export PATH;’
+
+term="$(cat /proc/$PPID/comm)"
+
+# Change prompt for st
+if [[ $term = "st" ]]; then
+  #transset-df "0.60" --id "$WINDOWID" >/dev/null
+  p='\[\033[01;36m\]\u\[\033[0;32m\]@\[\033[0;34m\]\h 󰣇 \[\033[0;39m\]\w\n>>> '
+  PS1=$p
+fi
+
+
