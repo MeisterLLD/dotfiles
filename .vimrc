@@ -67,6 +67,7 @@ Plugin 'mechatroner/rainbow_csv'
 Plugin 'vim-scripts/Align'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ocaml/vim-ocaml'
+Plugin 'jpalardy/vim-slime'
 if has('gui_running')
  Plugin 'HendrikPetertje/vimify'
 endif
@@ -90,10 +91,11 @@ filetype indent on
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
 " 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
 " The following changes the default filetype back to 'tex':
+let g:Tex_GotoError=0 " don't open log file on errors 
 let g:tex_flavor='latex'
 " Réglages compilation latex
 let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -interaction=nonstopmode -shell-escape $*'
+let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -file-line-error -interaction=nonstopmode -shell-escape $*'
 "let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -file-line-error -interaction=nonstopmode $*'
 " On visualise avec evince pour vim (pas réussi à forward sync zathura)
 let g:Tex_ViewRule_pdf = 'zathura'
@@ -116,10 +118,12 @@ let g:Tex_IgnoredWarnings =
       \'LaTeX Warning: Text'."\n".
       \'Package inputenc Warning:'."\n".
       \'Package fourier Warning:'."\n".
+      \'Label `LastPage'."\n".
+      \'There were multiply-defined labels.'."\n".
       \'Package amsmath Warning'
-let g:Tex_IgnoreLevel = 14
+let g:Tex_IgnoreLevel = 16
 "Pas ouvrir les fichiers sty etc 
-let g:Tex_PackagesMenu = 0
+"let g:Tex_PackagesMenu = 0
 "Compiler avec F1
 autocmd FileType tex map <F1> :w<CR>:silent call Tex_RunLaTeX()<CR>
 autocmd FileType tex inoremap <F1> <ESC>:w<CR>:silent call Tex_RunLaTeX()<CR><CR>
@@ -381,4 +385,5 @@ nnoremap <C-Down> :silent! let &guifont = substitute(
  \ '\=eval(submatch(0)-1)',
  \ '')<CR>
 
+let g:slime_target = "tmux"
 

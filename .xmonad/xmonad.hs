@@ -350,7 +350,7 @@ myStartupHook = do
   -- spawnOnce "picom &"
   spawnOnce "nm-applet &"
   spawnOnce "xbindkeys &"
-  spawnOnce "exec /usr/bin/trayer --edge top --align right --width 5  --height 28 --tint 0x002b36 --alpha 0 --transparent true &"
+  spawnOnce "exec /usr/bin/trayer --edge top --align right --width 5  --height 28 --tint 0x002b36 --alpha 0 --transparent true --monitor 1 &"
   spawnOnce "nextcloud &"
   spawnOnce "redshift-gtk &"
   spawnOnce "extramonitor extra &"
