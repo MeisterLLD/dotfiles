@@ -28,7 +28,8 @@ import Control.Monad -- liftM2
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.IndependentScreens
 import Data.Semigroup
-import XMonad.Hooks.DynamicProperty
+--import XMonad.Hooks.DynamicProperty
+import XMonad.Hooks.OnPropertyChange
 import XMonad.Layout.Renamed
 import XMonad.Layout.Magnifier
 import XMonad.Layout.Spiral
@@ -320,8 +321,8 @@ addEWMHFullscreen   = do
 
 myEventHook = composeAll
    [
-   dynamicPropertyChange "WM_NAME"  (title =? "Spotify" --> viewShift "spo"),
-   dynamicPropertyChange "WM_NAME"  (className =? "libreoffice-calc" --> viewShift "not")
+   onXPropertyChange "WM_NAME"  (title =? "Spotify" --> viewShift "spo"),
+   onXPropertyChange "WM_NAME"  (className =? "libreoffice-calc" --> viewShift "not")
    ]
    where    viewShift = doF . liftM2 (.) W.greedyView W.shift
    
@@ -371,10 +372,10 @@ main = do
          ,ppTitle = xmobarColor "orange" ""  . shorten 50
          ,ppCurrent = xmobarColor "#fff200" "" . wrap "[" "]"
          ,ppHidden  = xmobarColor "#ba291c" "" . wrap "[" "]"
-	 ,ppHiddenNoWindows  = xmobarColor "lightblue" "" . wrap "[" "]"  
+         ,ppHiddenNoWindows  = xmobarColor "lightblue" "" . wrap "[" "]"  
          ,ppLayout = xmobarColor"white" ""
          ,ppUrgent = xmobarColor "#657b83" "" . wrap "!" "!" 
-	 ,ppSep = " | "
+         ,ppSep = " | "
       }
       , manageHook = manageDocks <+> myManageHook
       , startupHook = myStartupHook 
