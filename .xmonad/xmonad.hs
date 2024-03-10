@@ -321,7 +321,7 @@ addEWMHFullscreen   = do
 
 myEventHook = composeAll
    [
-   onXPropertyChange "WM_NAME"  (title =? "Spotify" --> viewShift "spo"),
+   onXPropertyChange "WM_NAME"  (title =? "Spotify Premium" --> viewShift "spo"),
    onXPropertyChange "WM_NAME"  (className =? "libreoffice-calc" --> viewShift "not")
    ]
    where    viewShift = doF . liftM2 (.) W.greedyView W.shift
