@@ -1,2 +1,2 @@
 action = copy
-files = [emojis, math, superscripts_and_subscripts, phonetic_extensions, latin-1_supplement, dingbats, spacing_modifier_letters, general_punctuation, musical_symbols, letterlike_symbols]
+files = [emojis, math, superscripts_and_subscripts, phonetic_extensions, latin-1_supplement, dingbats, spacing_modifier_letters, general_punctuation, musical_symbols, letterlike_symbols, latin-1_supplement]
