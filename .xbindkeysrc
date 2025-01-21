@@ -71,7 +71,7 @@
     Mod2 + XF86AudioMute 
 
 #Suspend
-"systemctl suspend"
+"systemctl sleep"
     m:0x40 + c:78
     Mod4 + Scroll_Lock 
 
@@ -81,7 +81,7 @@
     Shift+Mod4 + Scroll_Lock 
 
 #Toggle Audio
-"toggle_audio"
+"/usr/local/bin/togglesnd.py Sinks"
     m:0x40 + c:96
     Mod4 + F12 
 
@@ -98,9 +98,9 @@
    Shift+Mod4+S
 
 #Remark
-"xrandr --output HDMI-0 --mode 1920x1080 & sleep 5 & xrandr --output HDMI-0 --mode 3840x2160 & sleep 5 & extramonitor extra"
+"xrandr --output HDMI-0 --mode 1920x1080 && sleep 2 && xrandr --output HDMI-0 --mode 3840x2160"
     m:0x51 + c:40
-    Shift+Mod2+Mod4 + d 
+    Shift+ Mod4 + d 
 
 #
 # End of xbindkeys configuration

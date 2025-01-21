@@ -377,6 +377,8 @@ autocmd FileType tex inoremap [[ \left[, <++>\right[ <++><Esc>17<left>i
 
 autocmd FileType tex inoremap e^ \mathrm{e}^{}<++> <Esc>5<left>i 
 
+autocmd FileType tex vnoremap <buffer> APA <Esc>`>a}<Esc>`<i\apart{<Esc>gv>gv
+
 " Augmenter ou diminuer la police
 nnoremap <C-Up> :silent! let &guifont = substitute(&guifont,'\zs\d\+','\=eval(submatch(0)+1)','')<CR>
 nnoremap <C-Down> :silent! let &guifont = substitute(

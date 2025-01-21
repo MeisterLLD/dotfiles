@@ -34,4 +34,4 @@ if [[ $term = "st" ]]; then
   PS1=$p
 fi
 
-
+alias lpd='~/Downloads/lpd_cli.sh'
